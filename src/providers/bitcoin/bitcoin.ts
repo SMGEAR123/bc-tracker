@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Bitcoin } from './../../models/bitcoin.model';
 
 /*
   Generated class for the BitcoinProvider provider.
@@ -17,7 +18,8 @@ export class BitcoinProvider {
   }
 
   getBitcoinPrice(currency: string) {
-    return this.http.get(`${this.ROOT_URL}${currency}`);
+    const priceQuery = this.http.get<Bitcoin>(`${this.ROOT_URL}${currency}`)
+    return priceQuery;
   }
 
 }

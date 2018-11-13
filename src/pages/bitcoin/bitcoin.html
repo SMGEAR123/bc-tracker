@@ -5,12 +5,19 @@
       <ion-img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/240px-Bitcoin.svg.png"></ion-img>
     </ion-row>
     <ion-row justify-content-center margin-bottom>
-      <h1 padding>BTC: GBP 7000</h1>
-      <p>The average price last week was: GBP 6000</p>
+
+    <div *ngIf="bitcoin$ | async as bc; else loading" text-center>
+      <h1 padding>BTC: {{bc.ask | currency: currency + " "}}</h1>
+      <h2>Selected Currency: {{currency}}</h2>
+      <p>The average price last week was: {{bc.averages.week | currency: currency + " "}}</p>
+    </div>
+    <ng-template #loading>
+      <h1>Loading...</h1>
+    </ng-template>
     </ion-row>
 
     <ion-row justify-content-center>
-      <button ion-button icon-only round outline>
+      <button ion-button icon-only round outline (click)="getBitCoinPrice()">
         <ion-icon name="refresh"></ion-icon>
       </button>
     </ion-row>
@@ -23,9 +30,10 @@
 <ion-footer>
   <ion-item>
     <ion-label>Select Currency</ion-label>
-    <ion-select>
+    <ion-select [(ngModel)]="currency" (ionChange)="getBitCoinPrice()">
+      <ion-option value="None">Select a currency</ion-option>
       <ion-option value="GBP">GBP</ion-option>
-      <ion-option value="GBP">USD</ion-option>
+      <ion-option value="USD">USD</ion-option>
       <ion-option value="AUD">AUD</ion-option>
       <ion-option value="EUR">EUR</ion-option>
       <ion-option value="INR">INR</ion-option>
