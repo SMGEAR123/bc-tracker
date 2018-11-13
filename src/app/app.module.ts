@@ -3,8 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpClientModule } from '@angular/common/http';
-/*Had to import this because HttpClient was changed https://stackoverflow.com/questions/46000748/error-no-provider-for-httphandler-in-angular2*/
 
 import { MyApp } from './app.component';
 import { BitcoinProvider } from '../providers/bitcoin/bitcoin';
@@ -17,7 +15,7 @@ import { BitcoinProvider } from '../providers/bitcoin/bitcoin';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+ 
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
